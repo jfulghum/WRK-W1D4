@@ -1,3 +1,4 @@
+require 'byebug'
 require_relative "board"
 
 class SudokuGame
@@ -8,6 +9,7 @@ class SudokuGame
 
   def initialize(board)
     @board = board
+    #@pos = nil
   end
 
   def get_pos
@@ -23,6 +25,7 @@ class SudokuGame
         puts ""
 
         pos = nil
+        #retry
       end
     end
     pos
@@ -34,7 +37,9 @@ class SudokuGame
       puts "Please enter a value between 1 and 9 (0 to clear the tile)"
       print "> "
       val = parse_val(gets.chomp)
+
     end
+    debugger
     val
   end
 
@@ -48,8 +53,8 @@ class SudokuGame
 
   def play_turn
     board.render
-    val = get_pos
-    pos = get_val
+    pos = get_pos # pos and val switched!!
+    val = get_val
     board[pos] = val
   end
 
