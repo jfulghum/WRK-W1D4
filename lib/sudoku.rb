@@ -1,4 +1,5 @@
 require_relative "board"
+require 'byebug'
 
 class SudokuGame
   def self.from_file(filename)
@@ -15,15 +16,16 @@ class SudokuGame
     until pos && valid_pos?(pos)
       puts "Please enter a position on the board (e.g., '3,4')"
       print "> "
-
-      begin
+      #
+      # begin
         pos = parse_pos(gets.chomp)
-      rescue
-        puts "Invalid position entered (did you use a comma?)"
-        puts ""
-
-        pos = nil
-      end
+      # rescue
+      #   puts "Invalid position entered (did you use a comma?)"
+      #   puts ""
+      #
+      #   pos = nil
+      #
+      # end
     end
     pos
   end
@@ -39,6 +41,7 @@ class SudokuGame
   end
 
   def parse_pos(string)
+    debugger
     string.split(",").map { |char| Integer(char) }
   end
 
@@ -55,6 +58,7 @@ class SudokuGame
 
   def run
     play_turn until solved?
+    debugger
     board.render
     puts "Congratulations, you win!"
   end
