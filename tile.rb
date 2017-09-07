@@ -3,7 +3,7 @@ require "colorize"
 class Tile
   attr_reader :value
 
-  def initialize(value)
+  def initialize(value = 0)
     @value = value
     @given = value == 0 ? false : true
   end

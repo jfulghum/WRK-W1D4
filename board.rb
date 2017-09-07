@@ -1,4 +1,5 @@
 require_relative "tile"
+require 'byebug'
 
 class Board
   def self.empty_grid
@@ -7,8 +8,8 @@ class Board
     end
   end
 
-  def self.from_file(filename)
-    rows = File.readlines(filename).map(&:chomp)
+  def self.from_file(filename) # "puzzles/sudoku1.txt"
+    rows = File.readlines(filename).map(&:chomp) #File.readlines reads given file per line and returns array with each line as element
     tiles = rows.map do |row|
       nums = row.split("").map { |char| Integer(char) }
       nums.map { |num| Tile.new(num) }
@@ -26,10 +27,10 @@ class Board
     grid[x][y]
   end
 
-  def []=(pos, value)
+  def []=(pos, val)
     x, y = pos
     tile = grid[x][y]
-    tile.value = value
+    tile.value = val
   end
 
   def columns
